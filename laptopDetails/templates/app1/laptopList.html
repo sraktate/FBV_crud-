@@ -1,0 +1,47 @@
+{% extends 'app1/Home.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+<title>laptop List</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="container" style="padding:30px 20px; background-color: rgb(161, 223, 126);">
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Model Name</th>
+          <th scope="col">RAM</th>
+          <th scope="col">ROM</th>
+          <th scope="col">Processor</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        {% for field in lap_list %}
+        <tr>
+          <td>{{field.id}}</td>
+          <td>{{field.company_name}}</td>
+          <td>{{field.model_name}}</td>
+          <td>{{field.Ram}}</td>
+          <td>{{field.rom}}</td>
+          <td>{{field.processor}}</td>
+          <td>{{field.price}}</td>
+          <td>
+            <a href="{% url 'updateList' field.id %}" class="edit" title="Edit" data-toggle="tooltip" style="margin-left: 5%; color: #fbff00;"><i class="material-icons" style="font-size: 25px; padding: auto; margin-right: 20%;">&#xE254;</i></a>
+            <a href="{% url 'deleteList' field.id %}" class="delete" title="Delete" data-toggle="tooltip" style="margin-left: 5%; color: #ff0b0b;"><i class="material-icons" style="font-size: 25px; padding: auto;">&#xE872;</i></a>
+        </td>
+       
+        </tr>
+        {% endfor %}
+      </tbody>
+
+  </table>
+</div>
+{% endblock %}

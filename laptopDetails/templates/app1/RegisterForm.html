@@ -1,0 +1,23 @@
+{% extends 'app1/Home.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+<title>laptop register</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container" style="width: 400px; margin: 0 auto; padding: 30px 20px; background-color: rgb(228, 97, 97);">
+        <h2 style="text-align: center; color: black;">Register laptop </h2>
+        <form method="post" class="jumbotron" >
+            {% csrf_token %}
+            {{form|crispy}}
+            <br>
+            <div style="text-align: center;">
+            <input type="submit" class="btn btn-success" >
+        </div>
+        </form>
+    </div>
+{% endblock %}

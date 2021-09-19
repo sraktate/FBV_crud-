@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %}
+  <title>Document</title>
+  {% endblock %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    body {
+      color: #fff;
+      background: #63738a;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: #e1e1e1;
+    }
+
+    .form-control,
+    .btn {
+      border-radius: 3px;
+    }
+
+    .signup-form {
+      width: 390px;
+      margin: 0 auto;
+      padding: 30px 0;
+    }
+
+    .signup-form form {
+      color: #999;
+      border-radius: 3px;
+      margin-bottom: 15px;
+      background: #fff;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+    }
+
+    .signup-form h2 {
+      color: #333;
+      font-weight: bold;
+      margin-top: 0;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .signup-form hr {
+      margin: 0 -30px 20px;
+    }
+
+    .signup-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .signup-form label {
+      font-weight: normal;
+      font-size: 13px;
+    }
+
+    .signup-form .form-control {
+      min-height: 38px;
+      box-shadow: none !important;
+    }
+
+    .signup-form .input-group-addon {
+      max-width: 42px;
+      text-align: center;
+    }
+
+    .signup-form input[type="checkbox"] {
+      margin-top: 2px;
+    }
+
+    .signup-form .btn {
+      font-size: 16px;
+      font-weight: bold;
+      background: #19aa8d;
+      border: none;
+      min-width: 140px;
+    }
+
+    .signup-form .btn:hover,
+    .signup-form .btn:focus {
+      background: #179b81;
+      outline: none;
+    }
+
+    .signup-form a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .signup-form a:hover {
+      text-decoration: none;
+    }
+
+    .signup-form form a {
+      color: #19aa8d;
+      text-decoration: none;
+    }
+
+    .signup-form form a:hover {
+      text-decoration: underline;
+    }
+
+    .signup-form .fa {
+      font-size: 21px;
+    }
+
+    .signup-form .fa-paper-plane {
+      font-size: 18px;
+    }
+
+    .signup-form .fa-check {
+      color: #fff;
+      left: 17px;
+      top: 18px;
+      font-size: 7px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" style="padding:10px 10px 0px 0px">
+    <header>
+      <h1
+        style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 500%; color: rgb(211, 202, 100);">
+        Lapshop</h1>
+      <p
+        style="color: rgb(187, 238, 49);margin-left: 4%; font-style: italic; font-family: 'Times New Roman', Times, serif; font-size: 21px;">
+        Excellent condition Affordable price...</p>
+    </header>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'L-Register' %}">Register Laptop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{% url 'L-list' %}">Laptop List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Contact</a>
+          </li>
+        </ul>
+        <form class="d-flex" style="margin-right: 1%;">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <div class="text-end">
+
+          {% if user.is_authenticated %}
+          <h5>Hello {{user.username}} &#128522;</h5>
+          <button type="button" class="btn btn-outline-light me-2"><a href="{% url 'logout' %}">Logout</a></button>
+          {% else %}
+          <button type="button" class="btn btn-outline-light me-2"><a href="{% url 'login' %}">Login</a></button>
+          <button type="button" class="btn btn-warning"><a href="{% url 'register' %}">Sign-up</a></button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+  <br><br>
+  {% block content %}
+  <h1
+    style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-style: oblique; color: chartreuse;">
+    <strong>Welcome to Lapshop.....</strong></h1>
+  {% endblock %}
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+    crossorigin="anonymous"></script>
+</body>
+<div class="container-fulid " style=" background-color: rgb(36, 34, 34); margin-top: 10%;">
+  <footer class="py-5" style="margin-left: 10%;">
+    <div class="row">
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-4 offset-1">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of whats new and exciting from us.</p>
+          <div class="d-flex w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <p>© 2021 Company, Inc. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+</html>
